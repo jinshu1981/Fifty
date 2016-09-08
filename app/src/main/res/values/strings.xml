@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Fifty</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="search_hint">What are you looking for?</string>
+    <string name="app_label">Fifty</string>
+    <string name="title_activity_activity_searchable">ActivitySearchable</string>
+</resources>
