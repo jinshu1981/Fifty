@@ -32,4 +32,5 @@ public class AutoHeightViewPager extends ViewPager {
                 MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
+
 }
