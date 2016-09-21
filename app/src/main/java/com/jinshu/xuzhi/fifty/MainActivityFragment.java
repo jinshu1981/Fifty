@@ -10,6 +10,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -28,6 +32,15 @@ public class MainActivityFragment extends Fragment {
 
     ListView topCategoryListView,FeaturedGigsListView;
     private AdapterTopCategory mTopCategoryListAdapter,mGigIntroductionAdapter;
+
+    class GigsInfo{
+        int id;
+        String title = "";
+        String author = "";
+        int price = 0;
+        int score = 0;
+    }
+    GigsInfo[] mGigs;
     public MainActivityFragment() {
 
     }
@@ -41,11 +54,15 @@ public class MainActivityFragment extends Fragment {
         FeaturedGigsListView = (ListView)rootView.findViewById(R.id.FeaturedGigs);
         viewAll =(TextView)rootView.findViewById(R.id.viewAll);
 
-        mTopCategoryListAdapter = new AdapterTopCategory(getActivity(),R.layout.top_categories_list_view,values);
+        Bundle bundle = this.getArguments();
+        String receiveMessage = bundle.getString("receiveMessage");
+        getGigsFromArguments(receiveMessage);
+
+        mTopCategoryListAdapter = new AdapterTopCategory(getActivity(),R.layout.top_categories_list_view,mGigs);
         topCategoryListView.setAdapter(mTopCategoryListAdapter);
         Utility.setListViewHeightBasedOnChildren(topCategoryListView);
 
-        mGigIntroductionAdapter =  new AdapterTopCategory(getActivity(),R.layout.recommanded_gigs_list_view,values);
+        mGigIntroductionAdapter =  new AdapterTopCategory(getActivity(),R.layout.recommanded_gigs_list_view,mGigs);
         FeaturedGigsListView.setAdapter(mGigIntroductionAdapter);
         Utility.setListViewHeightBasedOnChildren(FeaturedGigsListView);
 
@@ -84,5 +101,43 @@ public class MainActivityFragment extends Fragment {
         return rootView;
     }
 
+    public void getGigsFromArguments(String jsonString)
+    {
+         /*parse json string*/
+        String OutputData = "";
+        JSONObject jsonResponse;
+        try {
 
+            /****** Creates a new JSONObject with name/value mappings from the JSON string. ********/
+            jsonResponse = new JSONObject(jsonString);
+
+            /***** Returns the value mapped by name if it exists and is a JSONArray. ***/
+            /*******  Returns null otherwise.  *******/
+            JSONArray jsonMainNode = jsonResponse.optJSONArray("gigs");
+
+            /*********** Process each JSON Node ************/
+
+            int lengthJsonArr = jsonMainNode.length();
+            mGigs = new GigsInfo[lengthJsonArr];
+            for(int i=0; i < lengthJsonArr; i++)
+            {
+                mGigs[i] = new GigsInfo();
+                /****** Get Object for each JSON node.***********/
+                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
+
+                /******* Fetch node values **********/
+                mGigs[i].id        = jsonChildNode.optInt("id");
+                mGigs[i].title   = jsonChildNode.optString("title");
+                mGigs[i].author  = jsonChildNode.optString("author");
+                mGigs[i].price   = jsonChildNode.optInt("price");
+                mGigs[i].score   = jsonChildNode.optInt("score");
+
+            }
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }finally {
+            //System.out.println(OutputData);
+        }
+    }
 }
