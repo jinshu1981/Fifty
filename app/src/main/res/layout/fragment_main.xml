@@ -8,7 +8,7 @@
         android:padding="@dimen/activity_vertical_margin"
         android:orientation="vertical">
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.jinshu.xuzhi.fifty.AutoHeightViewPager
                 xmlns:android="http://schemas.android.com/apk/res/android"

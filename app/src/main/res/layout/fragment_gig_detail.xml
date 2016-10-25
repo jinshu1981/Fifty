@@ -1,0 +1,397 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jinshu.xuzhi.fifty.FragmentGigDetail">
+<LinearLayout  android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:animateLayoutChanges="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id = "@+id/gigTitleInfo">
+        <ImageView
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:src = "@drawable/point_gray"
+            android:id = "@+id/sellerIcon"
+            android:padding="10sp"/>
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text = "Hypnotize and send a personal maeeage to your lover"
+                android:id = "@+id/gigsTitle"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4sp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "diaryofsecrets"
+                android:textColor="@color/limegreen"
+                android:id = "@+id/sellerName"
+                android:layout_marginRight="4sp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src = "@drawable/arrow_down_float"
+                android:id = "@+id/sellerexpandArrow"
+                android:layout_marginRight="4sp"/>
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:src = "@drawable/point_gray"
+                android:id = "@+id/sellerLanguage"
+                android:layout_marginRight="4sp"/>
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:src = "@drawable/point_gray"
+                android:id = "@+id/sellerLever"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id = "@+id/sellerInfo"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="0sp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text = "I am Mama Luna,An expert in witchcraft with over 25 years experience.My unique spell casting methods will get yo quick results."
+                android:id = "@+id/sellerIntroduction"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
+                    android:src = "@drawable/point_gray"
+                    android:id = "@+id/LevelImage"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text = "99%"
+                    android:id = "@+id/overallRating"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text = "OVERALL RATING"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Go to Seller page"
+            android:textColor="@color/limegreen"
+            android:gravity="right"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:id = "@+id/goToSellerPage"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/lightgray"
+        android:layout_marginTop="4sp"
+        android:layout_marginBottom="4sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Delivers in 2 days on avg"
+            android:id = "@+id/avarageTime"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint2"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint3"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint4"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint5"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.jinshu.xuzhi.fifty.AutoHeightViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/presentation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20sp"
+            android:textColor="@color/white"
+            android:id="@+id/indicator"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+   <!-- <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src = "@drawable/big11"
+        android:layout_marginTop="4sp"
+        android:layout_marginBottom="4sp"/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "subcategory"
+            android:id = "@+id/subcategory"/>
+        <TextView
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text = "Created last year"
+            android:id = "@+id/createdTime"
+            android:gravity="right"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "ADD EXTRAS"
+            android:background="@drawable/botton_gray_border"
+            android:id = "@+id/addExtras"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"/>
+        <Button
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "ORDER ($5)"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/botton_green_border"
+            android:id = "@+id/buttonOrder"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "About"
+            android:textStyle="bold"
+            android:layout_gravity="left"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Greetings! I am mama Luna.Greetings! I am mama Luna.Greetings! I am mama Luna.Greetings! I am mama Luna.Greetings! I am mama Luna.Greetings! I am mama Luna.Greetings! I am mama Luna.Greetings! I am mama Luna.
+            Greetings! I am mama Luna.Greetings! I am mama Luna.Greetings! I am mama Luna.Greetings! I am mama Luna."
+            android:id = "@+id/gigsIntroduction"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "read less"
+            android:textColor="@color/limegreen"
+            android:gravity="right"
+            android:id = "@+id/read_less" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5sp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Gig Quantity"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"/>
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_gravity="center_vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src = "@drawable/minus"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "1"
+                android:textStyle = "bold"
+                android:id = "@+id/gigQuantity"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src = "@drawable/plus"/>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/lightgray"
+        android:layout_marginTop="4sp"
+        android:layout_marginBottom="4sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Add Gigs Extras"
+        android:textStyle="bold"/>
+    <ExpandableListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id = "@+id/gigsExtras"
+        android:dividerHeight="0sp"
+        android:divider="@android:color/transparent"
+        android:groupIndicator="@drawable/custom_extra_list_group_indicater">
+    </ExpandableListView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/lightgray"
+        android:layout_marginTop="4sp"
+        android:layout_marginBottom="4sp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/botton_green_border"
+        android:text = "ORDER ($5)"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:id = "@+id/buttonOrderExtras"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10sp"
+        android:background="@color/lightgray"
+        android:layout_marginTop="4sp"
+        android:layout_marginBottom="4sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Customer Reviews"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint11"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint22"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint33"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint44"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@android:drawable/presence_online"
+            android:id =  "@+id/reviewScorePoint55"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text = "Overall Score"
+        android:textColor="@color/limegreen"
+        android:id =  "@+id/displayoverallScoreDetail"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text = "0 Reviews"
+        android:id =  "@+id/reviewsNumber"/>
+    <ListView
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="10sp"
+        android:divider="@android:color/transparent"
+        android:id = "@+id/reviews" >
+    </ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "︾"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:id = "@+id/moreReview"/>
+</LinearLayout>
+</ScrollView>

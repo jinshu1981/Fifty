@@ -9,6 +9,8 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.SocketCommProtocol;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         //request initiate info from server
         TaskForCommunication task = new TaskForCommunication(this);
-        task.execute();
+        task.execute(SocketCommProtocol.INIT_REQUEST);
     }
 
 

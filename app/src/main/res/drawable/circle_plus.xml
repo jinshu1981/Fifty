@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    android:useLevel="false">
+    <!-- 设置一个浅灰色边框 -->
+    <stroke
+        android:width="0.5sp"
+        android:color="@color/lightgray" />
+    <corners android:radius="360sp" />
+    <solid
+        android:color="@color/white"/>
+
+    <size android:width="25sp"
+        android:height="25sp" />
+    <!-- 边距 -->
+    <padding
+        android:bottom="1sp"
+        android:left="1sp"
+        android:right="1sp"
+        android:top="1sp" />
+</shape>

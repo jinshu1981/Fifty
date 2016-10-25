@@ -3,7 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Fifty.iml" filepath="$PROJECT_DIR$/Fifty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/alipaySdk-20160825/alipaySdk-20160825.iml" filepath="$PROJECT_DIR$/alipaySdk-20160825/alipaySdk-20160825.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commonobject/commonobject.iml" filepath="$PROJECT_DIR$/commonobject/commonobject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fiftyserver/fiftyserver.iml" filepath="$PROJECT_DIR$/fiftyserver/fiftyserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-json/java-json.iml" filepath="$PROJECT_DIR$/java-json/java-json.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javax.json-1.0/javax.json-1.0.iml" filepath="$PROJECT_DIR$/javax.json-1.0/javax.json-1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-5.1.14-bin/mysql-connector-java-5.1.14-bin.iml" filepath="$PROJECT_DIR$/mysql-connector-java-5.1.14-bin/mysql-connector-java-5.1.14-bin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/picasso-2.5.2/picasso-2.5.2.iml" filepath="$PROJECT_DIR$/picasso-2.5.2/picasso-2.5.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sqljdbc4-3.0/sqljdbc4-3.0.iml" filepath="$PROJECT_DIR$/sqljdbc4-3.0/sqljdbc4-3.0.iml" />
     </modules>
   </component>
 </project>

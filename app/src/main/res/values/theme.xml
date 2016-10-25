@@ -40,9 +40,7 @@
     </style>
 
     <style name="MyActionBarTabBars" parent="@style/Widget.AppCompat.ActionBar.TabBar">
-
         <item name="android:showDividers">none</item>
-
     </style>
 
 </resources>

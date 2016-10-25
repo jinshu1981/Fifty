@@ -9,5 +9,9 @@
     <string name="title_activity_activity_temp_comm">ActivityTempComm</string>
 
 <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment...</string>
+    <string name="hello_blank_fragment">Loading...</string>
+    <string name="title_activity_activity_category_list">Categories</string>
+    <string name="title_activity_activity_subcategory_list">Subcategory</string>
+    <string name="title_activity_activity_gig_detail">GigDetail</string>
+    <string name="title_activity_activity_payment">ActivityPayment</string>
 </resources>

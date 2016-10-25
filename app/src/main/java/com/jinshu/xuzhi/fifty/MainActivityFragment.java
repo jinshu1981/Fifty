@@ -6,9 +6,16 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.CategoryObject;
+import com.example.GigObject;
+import com.example.JsonDefination;
+import com.example.SocketCommProtocol;
+import com.example.SqlDatabaseItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,25 +29,22 @@ public class MainActivityFragment extends Fragment {
     AdapterPresentation presentationAdapter;
     AutoHeightViewPager presentation;
     TextView viewAll;
-    public final static int[]  presentationImages = new int[] {
-            R.drawable.big11, R.drawable.big22, R.drawable.big33
+    public final static String[]  presentationImages = new String[] {
+            "https://s22.postimg.org/cylwjowoh/presentation1.png",
+            "https://s13.postimg.org/gh6jizid3/presentation2.png",
+            "https://s10.postimg.org/morktrwvd/presentation3.png"
     };
     private ImageView[] indicationPoint;/*指示点控件*/
     private int[] points = {R.id.point1,R.id.point2,R.id.point3};
     private int mImageGroupSize;
-    public String[]values= {"1","2","3"};;
+    //public String[]values= {"1","2","3"};;
 
     ListView topCategoryListView,FeaturedGigsListView;
     private AdapterTopCategory mTopCategoryListAdapter,mGigIntroductionAdapter;
 
-    class GigsInfo{
-        int id;
-        String title = "";
-        String author = "";
-        int price = 0;
-        int score = 0;
-    }
-    GigsInfo[] mGigs;
+    GigObject[] mGigs;
+    CategoryObject[] mCategoryInfo;
+
     public MainActivityFragment() {
 
     }
@@ -58,17 +62,20 @@ public class MainActivityFragment extends Fragment {
         String receiveMessage = bundle.getString("receiveMessage");
         getGigsFromArguments(receiveMessage);
 
-        mTopCategoryListAdapter = new AdapterTopCategory(getActivity(),R.layout.top_categories_list_view,mGigs);
+        mTopCategoryListAdapter = new AdapterTopCategory(getActivity(),R.layout.top_categories_list_view, mCategoryInfo);
         topCategoryListView.setAdapter(mTopCategoryListAdapter);
         Utility.setListViewHeightBasedOnChildren(topCategoryListView);
 
         mGigIntroductionAdapter =  new AdapterTopCategory(getActivity(),R.layout.recommanded_gigs_list_view,mGigs);
         FeaturedGigsListView.setAdapter(mGigIntroductionAdapter);
         Utility.setListViewHeightBasedOnChildren(FeaturedGigsListView);
-
-        presentationAdapter = new AdapterPresentation(getActivity().getSupportFragmentManager(), presentationImages.length);
+        //System.out.println("presentationAdapter1");
+        presentationAdapter = new AdapterPresentation(getActivity().getSupportFragmentManager(), presentationImages);
+        //System.out.println("presentationAdapter2");
         presentation.setAdapter(presentationAdapter);
+        //System.out.println("presentationAdapter3");
         presentation.setOffscreenPageLimit(presentationImages.length);
+        //System.out.println("presentationAdapter4");
         presentation.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -77,10 +84,13 @@ public class MainActivityFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
+                //System.out.println("onPageSelected length = " + points.length);
                 for (int i = 0; i < points.length; i++) {
                     if (position == i) {
+                        //System.out.println("onPageSelected white position = " + position);
                         indicationPoint[i].setImageResource(R.drawable.point_white);
                     } else {
+                        //System.out.println("onPageSelected gray position = " + position);
                         indicationPoint[i].setImageResource(R.drawable.point_gray);
                     }
                 }
@@ -91,6 +101,7 @@ public class MainActivityFragment extends Fragment {
 
             }
         });
+
         mImageGroupSize = presentationImages.length;
         indicationPoint = new ImageView[mImageGroupSize];
 
@@ -98,6 +109,32 @@ public class MainActivityFragment extends Fragment {
             indicationPoint[i] = (ImageView) rootView.findViewById(points[i]);
         }
 
+        /*View all*/
+        viewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TaskForCommunication task = new TaskForCommunication(getActivity());
+                task.execute(SocketCommProtocol.CATEGORY_REQUEST);
+            }
+        });
+
+        /*topCategoryListView item click */
+        topCategoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView categoryName = (TextView)view.findViewById(R.id.categoryName);
+                TaskForCommunication task = new TaskForCommunication(getActivity());
+                task.execute(SocketCommProtocol.SUBCATEGORY_REQUEST + "/" + categoryName.getText().toString());
+            }
+        });
+        FeaturedGigsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView gigId = (TextView)view.findViewById(R.id.gigId);
+                TaskForCommunication task = new TaskForCommunication(getActivity());
+                task.execute(SocketCommProtocol.GIG_DETAIL_REQUEST + "/" + gigId.getText().toString());
+            }
+        });
         return rootView;
     }
 
@@ -113,25 +150,37 @@ public class MainActivityFragment extends Fragment {
 
             /***** Returns the value mapped by name if it exists and is a JSONArray. ***/
             /*******  Returns null otherwise.  *******/
-            JSONArray jsonMainNode = jsonResponse.optJSONArray("gigs");
-
-            /*********** Process each JSON Node ************/
-
-            int lengthJsonArr = jsonMainNode.length();
-            mGigs = new GigsInfo[lengthJsonArr];
+            JSONArray jsonGigsNode = jsonResponse.optJSONArray(JsonDefination.FEATURED_GIG_ARRAY);
+            JSONArray jsonTopCategoriesNode = jsonResponse.optJSONArray(JsonDefination.TOP_CATEGORY_ARRAY);
+            /*********** Process each Gigs Node ************/
+            int lengthJsonArr = jsonGigsNode.length();
+            mGigs = new GigObject[lengthJsonArr];
             for(int i=0; i < lengthJsonArr; i++)
             {
-                mGigs[i] = new GigsInfo();
+
+                mGigs[i] = new GigObject();
                 /****** Get Object for each JSON node.***********/
-                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
-
+                JSONObject jsonChildNode = jsonGigsNode.getJSONObject(i);
                 /******* Fetch node values **********/
-                mGigs[i].id        = jsonChildNode.optInt("id");
-                mGigs[i].title   = jsonChildNode.optString("title");
-                mGigs[i].author  = jsonChildNode.optString("author");
-                mGigs[i].price   = jsonChildNode.optInt("price");
-                mGigs[i].score   = jsonChildNode.optInt("score");
+                mGigs[i].id      = jsonChildNode.optInt(SqlDatabaseItem.GigTable.COLUMN_ID);
+                mGigs[i].title   = jsonChildNode.optString(SqlDatabaseItem.GigTable.COLUMN_TITLE);
+                mGigs[i].seller  = jsonChildNode.optString(SqlDatabaseItem.GigTable.COLUMN_SELLER);
+                mGigs[i].price   = jsonChildNode.optInt(SqlDatabaseItem.GigTable.COLUMN_PRICE);
+                mGigs[i].score   = jsonChildNode.optInt(SqlDatabaseItem.GigTable.COLUMN_SCORE);
+            }
 
+            /*********** Process each top Category Node ************/
+            lengthJsonArr = jsonTopCategoriesNode.length();
+            mCategoryInfo = new CategoryObject[lengthJsonArr];
+            for(int i=0; i < lengthJsonArr; i++)
+            {
+                mCategoryInfo[i] = new CategoryObject();
+                /****** Get Object for each JSON node.***********/
+                JSONObject jsonChildNode = jsonTopCategoriesNode.getJSONObject(i);
+                /******* Fetch node values **********/
+                mCategoryInfo[i].name   = jsonChildNode.optString(SqlDatabaseItem.CategoryTable.COLUMN_NAME);
+                mCategoryInfo[i].introduction   = jsonChildNode.optString(SqlDatabaseItem.CategoryTable.COLUMN_INTRODUCTION);
+                mCategoryInfo[i].url   = jsonChildNode.optString(SqlDatabaseItem.CategoryTable.COLUMN_URL);
             }
         } catch (JSONException e) {
 

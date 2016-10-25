@@ -5,14 +5,23 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="C:\Program Files\Android\Android Studio\gradle\gradle-2.4" />
+        <option name="gradleHome" value="C:\Program Files\Android\Android Studio1\gradle\gradle-2.14.1" />
         <option name="gradleJvm" value="1.7" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/alipaySdk-20160825" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/commonobject" />
+            <option value="$PROJECT_DIR$/fiftyserver" />
+            <option value="$PROJECT_DIR$/java-json" />
+            <option value="$PROJECT_DIR$/javax.json-1.0" />
+            <option value="$PROJECT_DIR$/mysql-connector-java-5.1.14-bin" />
+            <option value="$PROJECT_DIR$/picasso-2.5.2" />
+            <option value="$PROJECT_DIR$/sqljdbc4-3.0" />
           </set>
         </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
